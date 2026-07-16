@@ -1,0 +1,19 @@
+{
+    "No workspace folder is opened.": "ワークスペースが開かれていません。",
+    "The target file types configuration is invalid.\n\nExtensions must start with '.' and Markdown languages must not contain newlines or backticks.": "結合対象ファイル種別の設定が不正です。\n\n拡張子は '.' で始まる文字列、Markdown言語識別子は改行・バッククォートを含まない文字列を指定してください。",
+    "Successfully generated {0}.": "'{0}' を出力しました。",
+    "The output size threshold format is invalid. ({0})\n\nExample: \"10MB\", \"512KiB\", \"1024\"": "出力サイズ警告しきい値の形式が不正です。 ({0})\n\n例: \"10MB\", \"512KiB\", \"1024\"",
+    "Combining source files": "ソースファイルの結合",
+    "Loading configuration...": "設定を読み込み中...",
+    "Collecting target files...": "対象ファイルを収集中...",
+    "Estimating output size...": "出力サイズを推定中...",
+    "Generating directory tree...": "ディレクトリツリーを生成中...",
+    "Generating Markdown...": "Markdownを生成中...",
+    "Saving Markdown...": "Markdownを保存中...",
+    "Proceed": "続行",
+    "Create": "作成",
+    "Overwrite": "上書き",
+    "The estimated output size is {0}.\n\nDo you want to proceed?": "推定される出力サイズは {0} です。\n\n続行しますか？",
+    "The following directory does not exist.\n\n{0}\n\nDo you want to create it?": "次のディレクトリは存在しません。\n\n{0}\n\n作成しますか？",
+    "'{0}' already exists.\n\nDo you want to overwrite it?": "'{0}' は既に存在します。\n\n上書きしますか？"
+}

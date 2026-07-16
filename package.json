@@ -1,0 +1,146 @@
+{
+    "name": "code-combiner",
+    "displayName": "code-combiner",
+    "description": "%code-combiner.description%",
+    "version": "0.9.0",
+    "publisher": "suzume-amble",
+    "l10n": "./l10n",
+    "engines": {
+        "vscode": "^1.125.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "code-combiner.combine",
+                "title": "%code-combiner.combine.title%",
+                "icon": "$(combine)"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "code-combiner.combine",
+                    "when": "explorerResourceIsFolder",
+                    "group": "navigation"
+                }
+            ],
+            "view/title": [
+                {
+                    "command": "code-combiner.combine",
+                    "when": "view == workbench.explorer.fileView",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Code Combiner",
+            "properties": {
+                "codeCombiner.targetFiles.additionalFileNames": {
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "%codeCombiner.targetFiles.additionalFileNames.description%"
+                },
+                "codeCombiner.targetFiles.fileTypes": {
+                    "type": "object",
+                    "default": {
+                        ".dart": "dart",
+                        ".kt": "kotlin",
+                        ".swift": "swift",
+                        ".js": "javascript",
+                        ".ts": "typescript",
+                        ".jsx": "jsx",
+                        ".tsx": "tsx",
+                        ".py": "python",
+                        ".php": "php",
+                        ".rb": "ruby",
+                        ".c": "c",
+                        ".h": "c",
+                        ".cpp": "cpp",
+                        ".hpp": "cpp",
+                        ".cs": "csharp",
+                        ".java": "java",
+                        ".go": "go",
+                        ".rs": "rust",
+                        ".html": "html",
+                        ".css": "css",
+                        ".md": "markdown",
+                        ".json": "json",
+                        ".yaml": "yaml",
+                        ".yml": "yaml",
+                        ".toml": "toml",
+                        ".sh": "bash",
+                        ".ps1": "powershell",
+                        ".bat": "bat"
+                    },
+                    "description": "%codeCombiner.targetFiles.fileTypes.description%"
+                },
+                "codeCombiner.outputFile.name": {
+                    "type": "string",
+                    "default": "combined_code.md",
+                    "description": "%codeCombiner.outputFile.name.description%"
+                },
+                "codeCombiner.outputFile.directory": {
+                    "type": "string",
+                    "default": "",
+                    "description": "%codeCombiner.outputFile.directory.description%"
+                },
+                "codeCombiner.outputFile.treeStyle": {
+                    "type": "string",
+                    "default": "pipe",
+                    "enum": [
+                        "pipe",
+                        "unicode",
+                        "heavy",
+                        "plus",
+                        "indent"
+                    ],
+                    "description": "%codeCombiner.outputFile.treeStyle.description%"
+                },
+                "codeCombiner.outputFile.warningThreshold": {
+                    "type": "string",
+                    "default": "100MB",
+                    "description": "%codeCombiner.outputFile.warningThreshold.description%"
+                },
+                "codeCombiner.outputFile.confirmOverwrite": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%codeCombiner.outputFile.confirmOverwrite.description%"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.10",
+        "@types/node": "24.x",
+        "@types/vscode": "^1.125.0",
+        "@vscode/l10n-dev": "^0.0.35",
+        "@vscode/test-cli": "^0.0.15",
+        "@vscode/test-electron": "^3.0.0",
+        "eslint": "^10.5.0",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.61.1"
+    },
+    "overrides": {
+        "diff": "^8.0.4",
+        "serialize-javascript": "^7.0.6"
+    },
+    "dependencies": {
+        "ignore": "^7.0.5"
+    }
+}

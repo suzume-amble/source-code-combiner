@@ -1,0 +1,22 @@
+# 依存パッケージ（ローカルで生成されるためアップロード不要）
+node_modules/
+
+# コンパイル後の成果物（TSからビルドされたJSなど）
+out/
+dist/
+
+# パッケージングしたファイル（拡張子のパッケージ）
+*.vsix
+
+# テスト実行時のログやキャッシュ
+.vscode-test/
+.npm/
+npm-debug.log*
+
+# OSが自動生成するシステムファイル
+.DS_Store
+Thumbs.db
+
+# VS Codeの個人設定・ローカル開発設定・開発メモ
+.vscode/
+notes/

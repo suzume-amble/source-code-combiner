@@ -1,0 +1,19 @@
+{
+  "No workspace folder is opened.": "No workspace folder is opened.",
+  "The target file types configuration is invalid.\n\nExtensions must start with '.' and Markdown languages must not contain newlines or backticks.": "The target file types configuration is invalid.\n\nExtensions must start with '.' and Markdown languages must not contain newlines or backticks.",
+  "Successfully generated {0}.": "Successfully generated {0}.",
+  "The output size threshold format is invalid. ({0})\n\nExample: \"10MB\", \"512KiB\", \"1024\"": "The output size threshold format is invalid. ({0})\n\nExample: \"10MB\", \"512KiB\", \"1024\"",
+  "Combining source files": "Combining source files",
+  "Loading configuration...": "Loading configuration...",
+  "Collecting target files...": "Collecting target files...",
+  "Estimating output size...": "Estimating output size...",
+  "Generating directory tree...": "Generating directory tree...",
+  "Generating Markdown...": "Generating Markdown...",
+  "Saving Markdown...": "Saving Markdown...",
+  "Proceed": "Proceed",
+  "Create": "Create",
+  "Overwrite": "Overwrite",
+  "The estimated output size is {0}.\n\nDo you want to proceed?": "The estimated output size is {0}.\n\nDo you want to proceed?",
+  "The following directory does not exist.\n\n{0}\n\nDo you want to create it?": "The following directory does not exist.\n\n{0}\n\nDo you want to create it?",
+  "'{0}' already exists.\n\nDo you want to overwrite it?": "'{0}' already exists.\n\nDo you want to overwrite it?"
+}
