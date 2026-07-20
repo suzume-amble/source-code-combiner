@@ -6,8 +6,7 @@ import * as msg from "./messages";
 import { confirmEstimatedSize, confirmCreateDirectory, confirmOverwrite } from "./dialogs";
 
 import { loadSettings, LoadSettingsError } from "../core/settings";
-import { IgnoreFilter } from "../core/ignoreFilter";
-import { loadGitIgnore } from "../core/gitignore";
+import { createIgnoreFilter } from "../core/gitignore";
 import { collectFiles } from "../core/collectFiles";
 import { estimateOutputSize } from "../core/estimateOutputSize";
 import { createDirectoryTree } from "../core/directoryTree";
@@ -73,10 +72,12 @@ export async function combineCommand(uri?: vscode.Uri): Promise<void> {
                 message: msg.PROGRESS_COLLECTING_FILES,
             });
 
-            // ルートディレクトリ用のIgnoreFilterを生成する。
-            const ignoreFilter = new IgnoreFilter();
-            // ルートディレクトリの.gitignoreを読み込む。
-            await loadGitIgnore(uri.fsPath, ignoreFilter);
+            // ワークスペースルートを取得する。
+            const workspaceRoot = vscode.workspace.getWorkspaceFolder(uri)!.uri.fsPath;
+
+            // ワークスペースルートからコマンド実行ディレクトリまでの
+            // .gitignoreを読み込み、初期IgnoreFilterを生成する。
+            const ignoreFilter = await createIgnoreFilter(workspaceRoot, uri.fsPath);
 
             // ファイル一覧を収集する。
             const files = await collectFiles(
@@ -111,7 +112,6 @@ export async function combineCommand(uri?: vscode.Uri): Promise<void> {
 
             // ディレクトリツリーを生成する。
             const rootDirectoryName = path.basename(uri.fsPath);
-            //const directoryTree = createDirectoryTree(rootDirectoryName, files);
             const directoryTree = createDirectoryTree(rootDirectoryName, files, settings.treeStyle);
 
             progress.report({

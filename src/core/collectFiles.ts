@@ -127,25 +127,63 @@ async function collectDirectory(
         }
 
         // ファイル名が追加対象に登録されていれば結合対象とする。
-        // ファイル名は大文字小文字を区別して比較する。
-        if (!additionalFileNames.includes(entry.name)) {
-            // ファイルの拡張子を取得する。
-            const extension = path.extname(entry.name);
-
-            // 結合対象ファイル種別一覧へ登録されている拡張子のみ結合対象とする。
-            if (!(extension in fileTypes)) {
-                continue;
-            }
+        if (!matchesTargetFile(entry.name, additionalFileNames, fileTypes)) {
+            continue;
         }
 
-        const stat = await fs.stat(absolutePath);
-
-        files.push({
-            absolutePath,
-            relativePath: path.relative(rootPath, absolutePath),
-            name: entry.name,
-            extension: path.extname(entry.name),
-            size: stat.size,
-        });
+        // 結合対象となるファイルを追加する。
+        files.push(await getFileInfo(absolutePath, relativePath, entry.name));
     }
+}
+
+/**
+ * ファイル名および拡張子から、
+ * 結合対象となるファイルか判定する。
+ *
+ * additionalFileNamesへ登録されたファイル、
+ * または結合対象ファイル種別一覧へ登録された
+ * 拡張子を持つファイルを対象とする。
+ *
+ * @param fileName 判定するファイル名
+ * @param additionalFileNames settings.jsonで追加指定されたファイル名一覧
+ * @param fileTypes 結合対象ファイル種別一覧
+ * @returns 結合対象ならtrue
+ */
+function matchesTargetFile(
+    fileName: string,
+    additionalFileNames: readonly string[],
+    fileTypes: Readonly<Record<string, string>>,
+): boolean {
+    if (additionalFileNames.includes(fileName)) {
+        return true;
+    }
+
+    const extension = path.extname(fileName);
+    return extension in fileTypes;
+}
+
+/**
+ * ファイル情報を取得する。
+ *
+ * ファイルサイズを取得し、FileInfoを生成する。
+ *
+ * @param absolutePath ファイルの絶対パス
+ * @param relativePath ルートディレクトリからの相対パス
+ * @param fileName ファイル名
+ * @returns ファイル情報
+ */
+async function getFileInfo(
+    absolutePath: string,
+    relativePath: string,
+    fileName: string,
+): Promise<FileInfo> {
+    const stat = await fs.stat(absolutePath);
+
+    return {
+        absolutePath,
+        relativePath,
+        name: fileName,
+        extension: path.extname(fileName),
+        size: stat.size,
+    };
 }
