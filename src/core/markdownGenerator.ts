@@ -43,6 +43,11 @@ export async function generateMarkdown(
             file.relativePath === ""
                 ? rootDirectoryName
                 : `${rootDirectoryName}${path.sep}${file.relativePath}`;
+
+        // Markdown出力用のパスへ変換する。
+        // パス区切り文字は実行OSにかかわらず「/」を使用する。
+        const markdownDisplayPath = displayPath.replaceAll(path.sep, "/");
+
         // UTF-8として読み込み、必要に応じてUTF-8 BOMを除去する。
         let source = await fs.readFile(file.absolutePath, "utf8");
         source = removeBom(source);
@@ -55,7 +60,7 @@ export async function generateMarkdown(
 
         parts.push("\n");
         parts.push(FILE_HEADING_PREFIX);
-        parts.push(displayPath);
+        parts.push(markdownDisplayPath);
         parts.push("\n\n");
         parts.push(fence);
         parts.push(language);
