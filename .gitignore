@@ -18,5 +18,5 @@ npm-debug.log*
 Thumbs.db
 
 # VS Codeの個人設定・ローカル開発設定・開発メモ
-.vscode/
+.vscode/settings.json
 notes/
