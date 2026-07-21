@@ -53,7 +53,7 @@ export async function createIgnoreFilter(
  * @param directoryPath .gitignoreを読み込むディレクトリパス
  * @param filter ルールを追加するIgnoreFilter
  */
-export async function loadGitIgnore(directoryPath: string, filter: IgnoreFilter): Promise<void> {
+async function loadGitIgnore(directoryPath: string, filter: IgnoreFilter): Promise<void> {
     // .gitignoreの絶対パスを生成する。
     const gitignorePath = path.join(directoryPath, ".gitignore");
 
