@@ -29,7 +29,7 @@ export async function createIgnoreFilter(
     const directories = relativePath.split(path.sep).filter((directory) => directory.length > 0);
 
     // ワークスペースルートの.gitignoreを読み込む。
-    await loadGitIgnore(workspaceRoot, filter);
+    await applyGitIgnore(workspaceRoot, filter);
 
     // ワークスペースルートからコマンド実行ディレクトリまで
     // 順番に.gitignoreを読み込む。
@@ -38,7 +38,7 @@ export async function createIgnoreFilter(
     for (const directory of directories) {
         currentPath = path.join(currentPath, directory);
 
-        await loadGitIgnore(currentPath, filter);
+        await applyGitIgnore(currentPath, filter);
     }
 
     return filter;
@@ -46,14 +46,14 @@ export async function createIgnoreFilter(
 
 /**
  * 指定されたディレクトリの .gitignore を読み込み、
- * IgnoreFilterへルールを追加する。
+ * IgnoreFilterへルールを適用する。
  *
  * .gitignore が存在しない場合は何もしない。
  *
  * @param directoryPath .gitignoreを読み込むディレクトリパス
- * @param filter ルールを追加するIgnoreFilter
+ * @param filter ルールを適用するIgnoreFilter
  */
-async function loadGitIgnore(directoryPath: string, filter: IgnoreFilter): Promise<void> {
+export async function applyGitIgnore(directoryPath: string, filter: IgnoreFilter): Promise<void> {
     // .gitignoreの絶対パスを生成する。
     const gitignorePath = path.join(directoryPath, ".gitignore");
 
@@ -61,7 +61,7 @@ async function loadGitIgnore(directoryPath: string, filter: IgnoreFilter): Promi
         // .gitignoreを読み込む。
         const content = await fs.readFile(gitignorePath, "utf-8");
 
-        // 空行を除外してIgnoreFilterへルールを追加する。
+        // 空行を除外してIgnoreFilterへルールを適用する。
         const rules = content.split(/\r?\n/).filter((line) => line.length > 0);
 
         filter.add(rules);

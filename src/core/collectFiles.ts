@@ -3,7 +3,7 @@ import * as path from "node:path";
 
 import { FileInfo } from "./fileInfo";
 import { IgnoreFilter } from "./ignoreFilter";
-import { loadGitIgnore } from "./gitignore";
+import { applyGitIgnore } from "./gitignore";
 
 /**
  * 常に除外するディレクトリ名一覧。
@@ -71,7 +71,7 @@ async function collectDirectory(
     const currentIgnoreFilter = ignoreFilter.clone();
 
     // 現在のディレクトリの.gitignoreを読み込む。
-    await loadGitIgnore(currentPath, currentIgnoreFilter);
+    await applyGitIgnore(currentPath, currentIgnoreFilter);
 
     // 現在のディレクトリに含まれるファイル・ディレクトリ一覧を取得する。
     const entries = await fs.readdir(currentPath, {
