@@ -15,6 +15,9 @@ const FILE_HEADING_PREFIX = "# ";
 /**
  * ディレクトリツリーとソースコード一覧からMarkdownを生成する。
  *
+ * シンボリックリンクはディレクトリツリーのみに出力し、
+ * ソースコード一覧には出力しない。
+ *
  * @param directoryTree ディレクトリツリー
  * @param files 結合対象ファイル一覧
  * @param fileTypes 拡張子とMarkdown言語識別子の対応表
@@ -38,6 +41,11 @@ export async function generateMarkdown(
 
     // 対象ファイルを順番に読み込み、Markdownへ追加する。
     for (const file of files) {
+        // シンボリックリンクはディレクトリツリーのみへ出力する。
+        if (file.isSymbolicLink) {
+            continue;
+        }
+
         // ソースコードのタイトルに使うパスを生成する。
         const displayPath =
             file.relativePath === ""
@@ -55,7 +63,7 @@ export async function generateMarkdown(
         // ソースコード中のバッククォート数を調べ、安全なコードフェンスを生成する。
         const fence = createFence(source);
 
-        /// 拡張子からMarkdownの言語識別子を取得する。
+        // 拡張子からMarkdownの言語識別子を取得する。
         const language = fileTypes[file.extension] ?? "";
 
         parts.push("\n");

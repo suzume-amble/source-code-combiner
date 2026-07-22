@@ -17,7 +17,7 @@ const EXCLUDED_DIRECTORIES = new Set([".git", "node_modules", ".venv", "__pycach
  * @param additionalFileNames settings.jsonで追加指定されたファイル名一覧
  * @param fileTypes 結合対象ファイル種別一覧
  * @param outputFileName 出力するMarkdownファイル名
- * @param gitignoreFilter ルートディレクトリの.gitignoreフィルタ
+ * @param ignoreFilter ルートディレクトリの.gitignoreフィルタ
  * @returns 収集したファイル一覧
  */
 export async function collectFiles(
@@ -111,6 +111,30 @@ async function collectDirectory(
             continue;
         }
 
+        // シンボリックリンクの場合は収集する。
+        // リンク先は探索しない。
+        if (entry.isSymbolicLink()) {
+            // 出力するMarkdownファイル自身は結合対象にしない。
+            if (entry.name === outputFileName) {
+                continue;
+            }
+
+            // .gitignoreで除外されるシンボリックリンクは収集しない。
+            if (currentIgnoreFilter.ignores(relativePath)) {
+                continue;
+            }
+
+            // ファイル名が追加対象に登録されていれば結合対象とする。
+            if (!matchesTargetFile(entry.name, additionalFileNames, fileTypes)) {
+                continue;
+            }
+
+            // 結合対象となるシンボリックリンクを追加する。
+            files.push(await getSymbolicLinkInfo(absolutePath, relativePath, entry.name));
+
+            continue;
+        }
+
         // 通常ファイル以外は対象外とする。
         if (!entry.isFile()) {
             continue;
@@ -185,5 +209,35 @@ async function getFileInfo(
         name: fileName,
         extension: path.extname(fileName),
         size: stat.size,
+        isSymbolicLink: false,
+    };
+}
+
+/**
+ * シンボリックリンク情報を取得する。
+ *
+ * シンボリックリンクのリンク先を取得し、FileInfoを生成する。
+ *
+ * @param absolutePath シンボリックリンクの絶対パス
+ * @param relativePath ルートディレクトリからの相対パス
+ * @param fileName シンボリックリンク名
+ * @returns シンボリックリンク情報
+ */
+async function getSymbolicLinkInfo(
+    absolutePath: string,
+    relativePath: string,
+    fileName: string,
+): Promise<FileInfo> {
+    // シンボリックリンクのリンク先を取得する。
+    const symbolicLinkTarget = await fs.readlink(absolutePath);
+
+    return {
+        absolutePath,
+        relativePath,
+        name: fileName,
+        extension: path.extname(fileName),
+        size: 0,
+        isSymbolicLink: true,
+        symbolicLinkTarget,
     };
 }

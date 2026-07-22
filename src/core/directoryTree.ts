@@ -15,6 +15,12 @@ interface TreeNode {
     /** ディレクトリかどうか */
     isDirectory: boolean;
 
+    /** シンボリックリンクかどうか */
+    isSymbolicLink: boolean;
+
+    /** シンボリックリンクのリンク先 */
+    symbolicLinkTarget?: string;
+
     /** 子ノード一覧 */
     children: TreeNode[];
 }
@@ -67,6 +73,7 @@ function buildTree(rootName: string, files: readonly FileInfo[]): TreeNode {
     const root: TreeNode = {
         name: rootName,
         isDirectory: true,
+        isSymbolicLink: false,
         children: [],
     };
 
@@ -90,6 +97,7 @@ function buildTree(rootName: string, files: readonly FileInfo[]): TreeNode {
                 child = {
                     name: directoryName,
                     isDirectory: true,
+                    isSymbolicLink: false,
                     children: [],
                 };
 
@@ -103,6 +111,8 @@ function buildTree(rootName: string, files: readonly FileInfo[]): TreeNode {
         current.children.push({
             name: parts[parts.length - 1],
             isDirectory: false,
+            isSymbolicLink: file.isSymbolicLink,
+            symbolicLinkTarget: file.symbolicLinkTarget,
             children: [],
         });
     }
@@ -161,7 +171,15 @@ function appendTree(
         const isLast = index === node.children.length - 1;
 
         // 表示するノード名を決定する。
-        const nodeName = child.isDirectory ? child.name + "/" : child.name;
+        let nodeName: string;
+
+        if (child.isDirectory) {
+            nodeName = child.name + "/";
+        } else if (child.isSymbolicLink) {
+            nodeName = `${child.name} -> ${child.symbolicLinkTarget!}`;
+        } else {
+            nodeName = child.name;
+        }
 
         // 現在のノードを出力する。
         if (treeStyle === TreeStyle.INDENT) {
