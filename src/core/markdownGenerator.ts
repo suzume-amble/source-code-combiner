@@ -56,15 +56,26 @@ export async function generateMarkdown(
         // パス区切り文字は実行OSにかかわらず「/」を使用する。
         const markdownDisplayPath = displayPath.replaceAll(path.sep, "/");
 
-        // UTF-8として読み込み、必要に応じてUTF-8 BOMを除去する。
-        let source = await fs.readFile(file.absolutePath, "utf8");
-        source = removeBom(source);
+        let source = "";
+        let language = "";
+
+        try {
+            // UTF-8として読み込み、必要に応じてUTF-8 BOMを除去する。
+            source = await fs.readFile(file.absolutePath, "utf8");
+            source = removeBom(source);
+
+            // 拡張子からMarkdownの言語識別子を取得する。
+            language = fileTypes[file.extension] ?? "";
+        } catch (error) {
+            // エラーが発生した場合はエラーコードを除去して出力する
+            source = formatErrorMessage(error);
+
+            // エラー内容はプレーンテキストとして出力する
+            language = "text";
+        }
 
         // ソースコード中のバッククォート数を調べ、安全なコードフェンスを生成する。
         const fence = createFence(source);
-
-        // 拡張子からMarkdownの言語識別子を取得する。
-        const language = fileTypes[file.extension] ?? "";
 
         parts.push("\n");
         parts.push(FILE_HEADING_PREFIX);
@@ -121,4 +132,30 @@ function createFence(source: string): string {
  */
 function removeBom(text: string): string {
     return text.startsWith("\uFEFF") ? text.slice(1) : text;
+}
+
+/**
+ * エラーオブジェクトからエラーコードを取り除いた純粋なメッセージを取得する。
+ *
+ * Node.js のシステムエラー message（例: "ENOENT: no such file or directory, ..."）から
+ * 先頭のエラーコード部分を取り除きます。
+ *
+ * @param error 発生したエラー
+ * @returns 整形後のエラーメッセージ
+ */
+function formatErrorMessage(error: unknown): string {
+    if (!(error instanceof Error)) {
+        return "Error reading file.";
+    }
+
+    let message = error.message;
+    const code = (error as { code?: string }).code;
+
+    // エラーメッセージからエラーコード部分を除去
+    if (typeof code === "string" && message.startsWith(`${code}:`)) {
+        // エラーコードと区切り文字（":"）を除去し、先頭の余分な空白をトリムする
+        message = message.slice(code.length + 1).trimStart();
+    }
+
+    return `Error reading file:\n${message}`;
 }
