@@ -41,9 +41,6 @@ export function createDirectoryTree(
     // ファイル一覧からツリー構造を生成する。
     const root = buildTree(rootName, files);
 
-    // ディレクトリを優先して名前順に並び替える。
-    sortTree(root);
-
     // 使用するツリー文字セットを取得する。
     const preset = TREE_STYLE_PRESETS[treeStyle];
 
@@ -118,34 +115,6 @@ function buildTree(rootName: string, files: readonly FileInfo[]): TreeNode {
     }
 
     return root;
-}
-
-/**
- * ツリーを再帰的に並び替える。
- *
- * ディレクトリを優先し、その後に名前順で並び替える。
- *
- * @param node 対象ノード
- */
-function sortTree(node: TreeNode): void {
-    node.children.sort((a, b) => {
-        // ディレクトリを優先する。
-        if (a.isDirectory !== b.isDirectory) {
-            return a.isDirectory ? -1 : 1;
-        }
-
-        // 名前順で並び替える。
-        return a.name.localeCompare(b.name, undefined, {
-            sensitivity: "base",
-        });
-    });
-
-    // 子ノードも再帰的に並び替える。
-    for (const child of node.children) {
-        if (child.isDirectory) {
-            sortTree(child);
-        }
-    }
 }
 
 /**

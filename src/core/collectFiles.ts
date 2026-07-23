@@ -39,6 +39,9 @@ export async function collectFiles(
         files,
     );
 
+    // ファイルをディレクトリ順・ファイル名順でソートする。
+    files.sort(compareFileInfo);
+
     return files;
 }
 
@@ -240,4 +243,32 @@ async function getSymbolicLinkInfo(
         isSymbolicLink: true,
         symbolicLinkTarget,
     };
+}
+
+/**
+ * FileInfoをソートする。
+ *
+ * ソート順
+ * 1. ディレクトリ順
+ * 2. ファイル名順（大文字小文字を区別しない）
+ *
+ * @param a 比較対象のFileInfo
+ * @param b 比較対象のFileInfo
+ * @returns 比較結果
+ */
+function compareFileInfo(a: FileInfo, b: FileInfo): number {
+    // ディレクトリを比較する。
+    const directoryCompare = a.relativePath.localeCompare(b.relativePath, undefined, {
+        sensitivity: "accent",
+    });
+
+    // ディレクトリが異なる場合は比較結果を返す。
+    if (directoryCompare !== 0) {
+        return directoryCompare;
+    }
+
+    // ファイル名を比較する。
+    return a.name.localeCompare(b.name, undefined, {
+        sensitivity: "accent",
+    });
 }
