@@ -1,19 +1,39 @@
 {
     "name": "code-combiner",
-    "displayName": "code-combiner",
+    "displayName": "Code Combiner",
     "description": "%code-combiner.description%",
-    "version": "0.9.0",
+    "icon": "images/icon.png",
+    "version": "1.0.0",
     "publisher": "suzume-amble",
     "repository": {
         "type": "git",
         "url": "https://github.com/suzume-amble/code-combiner"
     },
     "license": "MIT",
+    "keywords": [
+        "ai",
+        "llm",
+        "markdown",
+        "source code",
+        "combine",
+        "merge",
+        "gitignore",
+        "repository",
+        "context",
+        "directory",
+        "directory tree"
+    ],
+    "homepage": "https://github.com/suzume-amble/code-combiner",
+    "bugs": {
+        "url": "https://github.com/suzume-amble/code-combiner/issues"
+    },
+    "markdown": "github",
     "l10n": "./l10n",
     "engines": {
         "vscode": "^1.125.0"
     },
     "categories": [
+        "Machine Learning",
         "Other"
     ],
     "activationEvents": [],
