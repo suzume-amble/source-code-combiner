@@ -5,6 +5,16 @@ All notable changes to the "code-combiner" extension will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-07-27
+
+### Added
+- **Japanese Documentation**: Added `README.ja.md` with language switching link for Japanese users.
+- **Extension Icons**: Added icon assets (`icon.png` and `icon.svg`) for the extension Marketplace display.
+
+### Changed
+- **Documentation & Metadata**: Rewrote `README.md` to provide comprehensive feature descriptions and usage guides. Updated `package.json` metadata (version `1.0.0`, keywords, categories, and repository information).
+- **Markdown Output Formatting**: Adjusted line breaks after directory tree and file headings from `\n\n` to `\n` for tighter, cleaner layout.
+
 ## [0.9.0] - 2026-07-23
 
 ### Added
