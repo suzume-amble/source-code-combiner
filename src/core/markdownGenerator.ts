@@ -33,7 +33,7 @@ export async function generateMarkdown(
 
     // ディレクトリツリーをMarkdownの先頭へ追加する。
     parts.push(DIRECTORY_TREE_HEADING);
-    parts.push("\n\n");
+    parts.push("\n");
     parts.push(DIRECTORY_TREE_FENCE);
     parts.push("\n");
     parts.push(directoryTree);
@@ -80,7 +80,7 @@ export async function generateMarkdown(
         parts.push("\n");
         parts.push(FILE_HEADING_PREFIX);
         parts.push(markdownDisplayPath);
-        parts.push("\n\n");
+        parts.push("\n");
         parts.push(fence);
         parts.push(language);
         parts.push("\n");
