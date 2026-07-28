@@ -1,13 +1,13 @@
 {
-    "name": "code-combiner",
-    "displayName": "Code Combiner",
-    "description": "%code-combiner.description%",
+    "name": "source-code-combiner",
+    "displayName": "Source Code Combiner",
+    "description": "%source-code-combiner.description%",
     "icon": "images/icon.png",
     "version": "1.0.0",
     "publisher": "suzume-amble",
     "repository": {
         "type": "git",
-        "url": "https://github.com/suzume-amble/code-combiner"
+        "url": "https://github.com/suzume-amble/source-code-combiner"
     },
     "license": "MIT",
     "keywords": [
@@ -23,9 +23,9 @@
         "directory",
         "directory tree"
     ],
-    "homepage": "https://github.com/suzume-amble/code-combiner",
+    "homepage": "https://github.com/suzume-amble/source-code-combiner",
     "bugs": {
-        "url": "https://github.com/suzume-amble/code-combiner/issues"
+        "url": "https://github.com/suzume-amble/source-code-combiner/issues"
     },
     "markdown": "github",
     "l10n": "./l10n",
@@ -41,39 +41,39 @@
     "contributes": {
         "commands": [
             {
-                "command": "code-combiner.combine",
-                "title": "%code-combiner.combine.title%",
+                "command": "source-code-combiner.combine",
+                "title": "%source-code-combiner.combine.title%",
                 "icon": "$(combine)"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
-                    "command": "code-combiner.combine",
+                    "command": "source-code-combiner.combine",
                     "when": "explorerResourceIsFolder",
                     "group": "navigation"
                 }
             ],
             "view/title": [
                 {
-                    "command": "code-combiner.combine",
+                    "command": "source-code-combiner.combine",
                     "when": "view == workbench.explorer.fileView",
                     "group": "navigation"
                 }
             ]
         },
         "configuration": {
-            "title": "Code Combiner",
+            "title": "Source Code Combiner",
             "properties": {
-                "codeCombiner.targetFiles.additionalFileNames": {
+                "sourceCodeCombiner.targetFiles.additionalFileNames": {
                     "type": "array",
                     "default": [],
                     "items": {
                         "type": "string"
                     },
-                    "description": "%codeCombiner.targetFiles.additionalFileNames.description%"
+                    "description": "%sourceCodeCombiner.targetFiles.additionalFileNames.description%"
                 },
-                "codeCombiner.targetFiles.fileTypes": {
+                "sourceCodeCombiner.targetFiles.fileTypes": {
                     "type": "object",
                     "default": {
                         ".dart": "dart",
@@ -105,19 +105,19 @@
                         ".ps1": "powershell",
                         ".bat": "bat"
                     },
-                    "description": "%codeCombiner.targetFiles.fileTypes.description%"
+                    "description": "%sourceCodeCombiner.targetFiles.fileTypes.description%"
                 },
-                "codeCombiner.outputFile.name": {
+                "sourceCodeCombiner.outputFile.name": {
                     "type": "string",
                     "default": "combined_code.md",
-                    "description": "%codeCombiner.outputFile.name.description%"
+                    "description": "%sourceCodeCombiner.outputFile.name.description%"
                 },
-                "codeCombiner.outputFile.directory": {
+                "sourceCodeCombiner.outputFile.directory": {
                     "type": "string",
                     "default": "",
-                    "description": "%codeCombiner.outputFile.directory.description%"
+                    "description": "%sourceCodeCombiner.outputFile.directory.description%"
                 },
-                "codeCombiner.outputFile.treeStyle": {
+                "sourceCodeCombiner.outputFile.treeStyle": {
                     "type": "string",
                     "default": "pipe",
                     "enum": [
@@ -127,17 +127,17 @@
                         "plus",
                         "indent"
                     ],
-                    "description": "%codeCombiner.outputFile.treeStyle.description%"
+                    "description": "%sourceCodeCombiner.outputFile.treeStyle.description%"
                 },
-                "codeCombiner.outputFile.warningThreshold": {
+                "sourceCodeCombiner.outputFile.warningThreshold": {
                     "type": "string",
                     "default": "100MB",
-                    "description": "%codeCombiner.outputFile.warningThreshold.description%"
+                    "description": "%sourceCodeCombiner.outputFile.warningThreshold.description%"
                 },
-                "codeCombiner.outputFile.confirmOverwrite": {
+                "sourceCodeCombiner.outputFile.confirmOverwrite": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%codeCombiner.outputFile.confirmOverwrite.description%"
+                    "description": "%sourceCodeCombiner.outputFile.confirmOverwrite.description%"
                 }
             }
         }

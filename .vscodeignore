@@ -3,6 +3,8 @@
 out/**
 node_modules/**
 src/**
+notes/**
+images/icon.svg
 .gitignore
 .yarnrc
 esbuild.js

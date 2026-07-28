@@ -4,12 +4,12 @@ import * as path from "node:path";
 import { TreeStyle } from "./directoryTreeStyle";
 
 /**
- * Code Combinerで使用する設定。
+ * Source Code Combinerで使用する設定。
  *
  * settings.jsonから取得した値を妥当性確認・正規化し、
  * 実際の処理でそのまま使用できる形で保持する。
  */
-export interface CodeCombinerSettings {
+export interface SourceCodeCombinerSettings {
     // 拡張子以外で結合対象とするファイル名一覧。
     additionalFileNames: string[];
 
@@ -51,7 +51,7 @@ export enum LoadSettingsError {
  */
 export interface LoadSettingsSuccess {
     success: true;
-    settings: CodeCombinerSettings;
+    settings: SourceCodeCombinerSettings;
 }
 
 /**
@@ -79,7 +79,7 @@ export type LoadSettingsResult = LoadSettingsSuccess | LoadSettingsFailure;
  */
 export function loadSettings(commandDirectory: string): LoadSettingsResult {
     // VSCodeの設定を取得する。
-    const config = vscode.workspace.getConfiguration("codeCombiner");
+    const config = vscode.workspace.getConfiguration("sourceCodeCombiner");
 
     // settings.jsonから追加対象ファイル名一覧を取得する。
     const additionalFileNames = config.get<string[]>("targetFiles.additionalFileNames")!;

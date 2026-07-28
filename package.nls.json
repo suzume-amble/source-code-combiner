@@ -1,11 +1,11 @@
 {
-    "code-combiner.description": "Combine source codes into Markdown from context menu",
-    "code-combiner.combine.title": "Combine Source Files (Markdown)",
-    "codeCombiner.targetFiles.additionalFileNames.description": "Additional file names to include in the output regardless of their extension.",
-    "codeCombiner.targetFiles.fileTypes.description": "Supported file extensions and Markdown language identifiers.",
-    "codeCombiner.outputFile.name.description": "Output Markdown file name.",
-    "codeCombiner.outputFile.directory.description": "Output directory for the generated Markdown file. Leave empty to save it in the command target directory. Relative paths are resolved from the workspace root, while absolute paths are used as specified. Both '/' and '\\' are accepted as path separators.",
-    "codeCombiner.outputFile.treeStyle.description": "Character style used for the directory tree.",
-    "codeCombiner.outputFile.warningThreshold.description": "Warn when the estimated output size exceeds this value. Examples: 100MB, 100MiB, 500KB.",
-    "codeCombiner.outputFile.confirmOverwrite.description": "Confirm before overwriting an existing output file."
+    "source-code-combiner.description": "Combine source codes into Markdown from context menu",
+    "source-code-combiner.combine.title": "Combine Source Files (Markdown)",
+    "sourceCodeCombiner.targetFiles.additionalFileNames.description": "Additional file names to include in the output regardless of their extension.",
+    "sourceCodeCombiner.targetFiles.fileTypes.description": "Supported file extensions and Markdown language identifiers.",
+    "sourceCodeCombiner.outputFile.name.description": "Output Markdown file name.",
+    "sourceCodeCombiner.outputFile.directory.description": "Output directory for the generated Markdown file. Leave empty to save it in the command target directory. Relative paths are resolved from the workspace root, while absolute paths are used as specified. Both '/' and '\\' are accepted as path separators.",
+    "sourceCodeCombiner.outputFile.treeStyle.description": "Character style used for the directory tree.",
+    "sourceCodeCombiner.outputFile.warningThreshold.description": "Warn when the estimated output size exceeds this value. Examples: 100MB, 100MiB, 500KB.",
+    "sourceCodeCombiner.outputFile.confirmOverwrite.description": "Confirm before overwriting an existing output file."
 }

@@ -1,11 +1,11 @@
 {
-    "code-combiner.description": "コンテキストメニューからソースコードをMarkdownに結合します",
-    "code-combiner.combine.title": "ソースファイルを結合 (Markdown)",
-    "codeCombiner.targetFiles.additionalFileNames.description": "拡張子に関係なく、出力に含める追加のファイル名。",
-    "codeCombiner.targetFiles.fileTypes.description": "サポートされているファイル拡張子とMarkdown言語識別子。",
-    "codeCombiner.outputFile.name.description": "出力するMarkdownのファイル名。",
-    "codeCombiner.outputFile.directory.description": "生成するMarkdownファイルの出力先ディレクトリ。空欄の場合はコマンド実行対象ディレクトリへ出力します。相対パスはワークスペースルートからのパスとして扱い、絶対パスはそのまま使用します。パス区切り文字は '/', '\\' のどちらも使用できます。",
-    "codeCombiner.outputFile.treeStyle.description": "ディレクトリツリーで使用する文字セット。",
-    "codeCombiner.outputFile.warningThreshold.description": "推定出力サイズがこの値を超えた場合に警告します。例: 100MB, 100MiB, 500KB",
-    "codeCombiner.outputFile.confirmOverwrite.description": "既存の出力ファイルを上書きする前に確認する。"
+    "source-code-combiner.description": "コンテキストメニューからソースコードをMarkdownに結合します",
+    "source-code-combiner.combine.title": "ソースファイルを結合 (Markdown)",
+    "sourceCodeCombiner.targetFiles.additionalFileNames.description": "拡張子に関係なく、出力に含める追加のファイル名。",
+    "sourceCodeCombiner.targetFiles.fileTypes.description": "サポートされているファイル拡張子とMarkdown言語識別子。",
+    "sourceCodeCombiner.outputFile.name.description": "出力するMarkdownのファイル名。",
+    "sourceCodeCombiner.outputFile.directory.description": "生成するMarkdownファイルの出力先ディレクトリ。空欄の場合はコマンド実行対象ディレクトリへ出力します。相対パスはワークスペースルートからのパスとして扱い、絶対パスはそのまま使用します。パス区切り文字は '/', '\\' のどちらも使用できます。",
+    "sourceCodeCombiner.outputFile.treeStyle.description": "ディレクトリツリーで使用する文字セット。",
+    "sourceCodeCombiner.outputFile.warningThreshold.description": "推定出力サイズがこの値を超えた場合に警告します。例: 100MB, 100MiB, 500KB",
+    "sourceCodeCombiner.outputFile.confirmOverwrite.description": "既存の出力ファイルを上書きする前に確認する。"
 }

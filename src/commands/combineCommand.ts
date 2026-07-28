@@ -13,7 +13,7 @@ import { createDirectoryTree } from "../core/directoryTree";
 import { generateMarkdown } from "../core/markdownGenerator";
 
 /**
- * Code Combinerのメイン処理を実行する。
+ * Source Code Combinerのメイン処理を実行する。
  *
  * エクスプローラーの右クリックメニューまたは
  * ビュータイトルのアイコンから呼び出され、

@@ -1,8 +1,8 @@
-# Code Combiner
+# Source Code Combiner
 
 English | [日本語](README.ja.md)
 
-Code Combiner is a Visual Studio Code extension that collects source code in a directory from the Explorer and outputs it as a single Markdown file optimized for AI input.
+Source Code Combiner is a Visual Studio Code extension that collects source code in a directory from the Explorer and outputs it as a single Markdown file optimized for AI input.
 In addition to source code, it also outputs directory structure and file paths in Markdown, making it useful not only for AI input but also for code reviews and source code sharing.
 It operates completely in a local environment and features dynamic parsing and exclusion of multi-level `.gitignore` files strictly complying with Git specifications.
 
@@ -37,7 +37,7 @@ It operates completely in a local environment and features dynamic parsing and e
 
 1. Launch Visual Studio Code.
 2. Open the "Extensions" view (`Ctrl+Shift+X` or `Cmd+Shift+X`).
-3. Type `Code Combiner` in the search box.
+3. Type `Source Code Combiner` in the search box.
 4. Click the "Install" button.
 
 ### Install from VSIX
@@ -101,8 +101,8 @@ By default, major programming languages, markup languages, and configuration fil
 - **Configuration Files**: JSON, YAML, TOML
 - **Scripting Languages**: Shell, PowerShell, Batch
 
-Target file extensions can be changed in `codeCombiner.targetFiles.fileTypes`.
-Files to include regardless of extension can be specified in `codeCombiner.targetFiles.additionalFileNames`.
+Target file extensions can be changed in `sourceCodeCombiner.targetFiles.fileTypes`.
+Files to include regardless of extension can be specified in `sourceCodeCombiner.targetFiles.additionalFileNames`.
 
 ## 🚫 Automatically Excluded Files and Directories
 
@@ -120,65 +120,65 @@ List of items configurable in `settings.json`.
 
 | Setting | Description |
 | --- | --- |
-| `codeCombiner.targetFiles.fileTypes` | Maps target file extensions (keys) to the language identifiers (values) used in Markdown code blocks. |
-| `codeCombiner.targetFiles.additionalFileNames` | Exact match list added to target files by file name, such as files without extensions or specific configuration files. |
-| `codeCombiner.outputFile.name` | File name of the output Markdown file to generate. |
-| `codeCombiner.outputFile.directory` | Output target directory of the generated Markdown file. |
-| `codeCombiner.outputFile.treeStyle` | Display format and character set used for directory tree. |
-| `codeCombiner.outputFile.warningThreshold` | Threshold to display confirmation dialog when estimated file size exceeds this value. |
-| `codeCombiner.outputFile.confirmOverwrite` | Whether to display an overwrite confirmation dialog if the output file exists. |
+| `sourceCodeCombiner.targetFiles.fileTypes` | Maps target file extensions (keys) to the language identifiers (values) used in Markdown code blocks. |
+| `sourceCodeCombiner.targetFiles.additionalFileNames` | Exact match list added to target files by file name, such as files without extensions or specific configuration files. |
+| `sourceCodeCombiner.outputFile.name` | File name of the output Markdown file to generate. |
+| `sourceCodeCombiner.outputFile.directory` | Output target directory of the generated Markdown file. |
+| `sourceCodeCombiner.outputFile.treeStyle` | Display format and character set used for directory tree. |
+| `sourceCodeCombiner.outputFile.warningThreshold` | Threshold to display confirmation dialog when estimated file size exceeds this value. |
+| `sourceCodeCombiner.outputFile.confirmOverwrite` | Whether to display an overwrite confirmation dialog if the output file exists. |
 
 ## 🔧 Details of Each Setting Item
 
-### `codeCombiner.targetFiles.fileTypes`
+### `sourceCodeCombiner.targetFiles.fileTypes`
 
 Sets file extensions (keys) to target for combination and language identifiers (values) specified in code blocks during Markdown output.
 
 - Default value: Major programming languages and configuration files (27 types such as `.ts`: `typescript`, `.py`: `python`)
 - Example setting:
   ```json
-  "codeCombiner.targetFiles.fileTypes": {
+  "sourceCodeCombiner.targetFiles.fileTypes": {
     ".ts": "typescript",
     ".py": "python",
     ".go": "go"
   }
   ```
 
-### `codeCombiner.targetFiles.additionalFileNames`
+### `sourceCodeCombiner.targetFiles.additionalFileNames`
 
 Adds files to the target list by file name, including files without extensions or specific configuration files. Judged by exact match distinguishing uppercase and lowercase.
 
 - Default value: `[]`
 - Example setting:
   ```json
-  "codeCombiner.targetFiles.additionalFileNames": [
+  "sourceCodeCombiner.targetFiles.additionalFileNames": [
     "Dockerfile",
     "Makefile",
     "LICENSE"
   ]
   ```
 
-### `codeCombiner.outputFile.name`
+### `sourceCodeCombiner.outputFile.name`
 
 Specifies the file name of the Markdown file to generate and output.
 
 - Default value: `"combined_code.md"`
 - Example setting:
   ```json
-  "codeCombiner.outputFile.name": "prompt_context.md"
+  "sourceCodeCombiner.outputFile.name": "prompt_context.md"
   ```
 
-### `codeCombiner.outputFile.directory`
+### `sourceCodeCombiner.outputFile.directory`
 
 Specifies output target directory of the Markdown file to generate. If this is an empty string, it is output to command execution directory where right-clicked. Relative paths (workspace root base) and absolute paths can be specified.
 
 - Default value: `""`
 - Example setting:
   ```json
-  "codeCombiner.outputFile.directory": "docs/ai"
+  "sourceCodeCombiner.outputFile.directory": "docs/ai"
   ```
 
-### `codeCombiner.outputFile.treeStyle`
+### `sourceCodeCombiner.outputFile.treeStyle`
 
 Specifies display format and character set used for directory tree automatically created at top of output file.
 
@@ -221,10 +221,10 @@ Specifies display format and character set used for directory tree automatically
     ```
 - Example setting:
   ```json
-  "codeCombiner.outputFile.treeStyle": "unicode"
+  "sourceCodeCombiner.outputFile.treeStyle": "unicode"
   ```
 
-### `codeCombiner.outputFile.warningThreshold`
+### `sourceCodeCombiner.outputFile.warningThreshold`
 
 Displays confirmation dialog before starting processing if estimated size of generated Markdown file exceeds this setting value. If unit is omitted, interpreted as bytes.
 
@@ -232,17 +232,17 @@ Displays confirmation dialog before starting processing if estimated size of gen
 - Selectable units: `B`, `KB`, `MB`, `GB`, `KiB`, `MiB`, `GiB`
 - Example setting:
   ```json
-  "codeCombiner.outputFile.warningThreshold": "50MB"
+  "sourceCodeCombiner.outputFile.warningThreshold": "50MB"
   ```
 
-### `codeCombiner.outputFile.confirmOverwrite`
+### `sourceCodeCombiner.outputFile.confirmOverwrite`
 
 Specifies whether to display overwrite confirmation dialog before saving if output target file already exists. If set to `false`, overwrites directly without confirmation.
 
 - Default value: `true`
 - Example setting:
   ```json
-  "codeCombiner.outputFile.confirmOverwrite": false
+  "sourceCodeCombiner.outputFile.confirmOverwrite": false
   ```
 
 ## 🔒 Security & Privacy
