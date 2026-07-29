@@ -5,6 +5,11 @@ All notable changes to the "Source Code Combiner" extension will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-07-29
+
+### Fixed
+- **拡張機能の説明文の修正**: `package.json` 内に説明文を直接インラインで記述する形に修正。
+
 ## [1.0.0] - 2026-07-28
 
 ### Added

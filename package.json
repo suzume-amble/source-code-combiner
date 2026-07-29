@@ -3,7 +3,7 @@
     "displayName": "Source Code Combiner",
     "description": "Combine multiple source code files into Markdown from the context menu.",
     "icon": "images/icon.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "suzume-amble",
     "repository": {
         "type": "git",
