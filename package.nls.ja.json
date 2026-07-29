@@ -1,5 +1,4 @@
 {
-    "source-code-combiner.description": "コンテキストメニューからソースコードをMarkdownに結合します",
     "source-code-combiner.combine.title": "ソースファイルを結合 (Markdown)",
     "sourceCodeCombiner.targetFiles.additionalFileNames.description": "拡張子に関係なく、出力に含める追加のファイル名。",
     "sourceCodeCombiner.targetFiles.fileTypes.description": "サポートされているファイル拡張子とMarkdown言語識別子。",

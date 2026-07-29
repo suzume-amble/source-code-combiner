@@ -1,7 +1,7 @@
 {
     "name": "source-code-combiner",
     "displayName": "Source Code Combiner",
-    "description": "%source-code-combiner.description%",
+    "description": "Combine multiple source code files into Markdown from the context menu.",
     "icon": "images/icon.png",
     "version": "1.0.0",
     "publisher": "suzume-amble",

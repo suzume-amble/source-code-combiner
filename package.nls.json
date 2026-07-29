@@ -1,5 +1,4 @@
 {
-    "source-code-combiner.description": "Combine source codes into Markdown from context menu",
     "source-code-combiner.combine.title": "Combine Source Files (Markdown)",
     "sourceCodeCombiner.targetFiles.additionalFileNames.description": "Additional file names to include in the output regardless of their extension.",
     "sourceCodeCombiner.targetFiles.fileTypes.description": "Supported file extensions and Markdown language identifiers.",
